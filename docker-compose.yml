@@ -1,9 +1,8 @@
  
 services:
   postgres:
-    image: postgres:lastest
+    image: postgres:15-alpine
     restart: always
-    shm_size: 128mb
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
@@ -11,8 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres:/var/lib/postgresql/18/docker
-
+      - postgres_data:/var/lib/postgresql/data
   adminer:
     image: adminer
     restart: always
